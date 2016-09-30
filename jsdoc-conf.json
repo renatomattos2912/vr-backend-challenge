@@ -1,0 +1,36 @@
+{
+  "plugins": ["plugins/markdown"],
+  "source": {
+    "exclude": [
+      ".git",
+      ".meteor",
+      "node_modules"
+    ],
+    "includePattern": ".+\\.js(x|doc)?$"
+  },
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "templates": {
+    "logoFile": "",
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "dateFormat": "ddd MMM Do YYYY",
+    "outputSourceFiles": true,
+    "outputSourcePath": true,
+    "systemName": "VivaReal Back End Challenge",
+    "footer": "",
+    "copyright": "renatomattos2912",
+    "navType": "vertical",
+    "theme": "cosmo",
+    "linenums": true,
+    "collapseSymbols": false,
+    "inverseNav": true,
+    "protocol": "html://",
+    "methodHeadingReturns": false
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  }
+}
