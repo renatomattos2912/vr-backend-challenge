@@ -9,16 +9,16 @@ let Schema = mongoose.Schema;
 
 let PropertiesSchema = new Schema(
     {
-        created_at:         { type: Date, default: Date.now },
-        updated_at:         { type: Date, default: Date.now },
-        "lat":              { type: Number, required: true },
-        "long":             { type: Number, required: true },
-        "title":            { type: String, required: true, validate: validation.stringLengthValidator },
-        "price":            { type: Number, required: true },
-        "description":      { type: String, required: true, validate: validation.stringLengthValidator },
-        "beds":             { type: Number, required: true },
-        "baths":            { type: Number, required: true },
-        "squareMeters":     { type: Number, required: true }
+        "created_at":           { type: Date, default: Date.now },
+        "updated_at":           { type: Date, default: Date.now },
+        "lat":                  { type: Number, required: true },
+        "long":                 { type: Number, required: true },
+        "title":                { type: String, required: true, validate: validation.stringLengthValidator },
+        "price":                { type: Number, required: true },
+        "description":          { type: String, required: true, validate: validation.stringLengthValidator },
+        "beds":                 { type: Number, required: true },
+        "baths":                { type: Number, required: true },
+        "squareMeters":         { type: Number, required: true }
     },
     {
         collection: "Properties"

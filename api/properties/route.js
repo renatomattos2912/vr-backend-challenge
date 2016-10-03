@@ -1,18 +1,20 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
+const express           = require('express');
+const router            = express.Router();
+const queryMount        = require(__base + 'lib/mongoose-paginate-queryMount');
+const utils             = require(__base + 'lib/utils');
 
-var queryMount = require(__base + 'lib/mongoose-paginate-queryMount');
-var utils = require(__base + 'lib/utils');
+// Model
+const propertiesModel   = require('./model');
 
-// Models
-var propertiesModel = require('./model');
-
-router.get('/', function (req, res) {
-    var query = {};
-    var options = {};
-    var q = queryMount(req, query, options);
+/**
+ * GET
+ */
+router.get('/', function(req, res) {
+    let query = {};
+    let options = {};
+    let q = queryMount(req, query, options);
 
     if(q.err) {
         return res.status(400)
@@ -20,22 +22,28 @@ router.get('/', function (req, res) {
             .json(q);
     }
 
-    propertiesModel.paginate(query, options, function(err, result) {
-        if (err)
-            return res.status(400)
-                .set('Content-Type', 'application/json')
-                .json(err);
-
+    propertiesModel.paginate({}, {}).then(function(result) {
         return res.status(200)
             .set('Content-Type', 'application/json')
             .json(result);
     });
+    /*propertiesModel.find({}, {})
+        .then(function(re) {
+            return res.status(200)
+                .set('Content-Type', 'application/json')
+                .json(re);
+        })
+        .catch(function(e) {
+            return res.status(400)
+                .set('Content-Type', 'application/json')
+                .json(e);
+        });*/
 });
 
 /**
  * POST
  */
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
 
     var Property = new propertiesModel();
 

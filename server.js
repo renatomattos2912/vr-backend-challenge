@@ -19,7 +19,7 @@ mongoose.Promise = require('bluebird');
 // Init app
 const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
-//app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
+app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
 app.use(cors());
 
 // URL base, only for conn test
