@@ -5,13 +5,13 @@ const router = express.Router();
 var utils = require(__base + 'lib/utils');
 
 // Model
-const propertiesModel = require('./model');
+const provincesModel = require('./model');
 
 /**
  * GET
  */
 router.get('/', function (req, res) {
-    propertiesModel.find({}, {})
+    provincesModel.find({}, {})
         .then(function (re) {
             return res.status(200)
                 .set('Content-Type', 'application/json')
@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
     let id = req.param('id');
 
-    propertiesModel.find({_id: id}, {})
+    provincesModel.find({_id: id}, {})
         .then(function (re) {
             return res.status(200)
                 .set('Content-Type', 'application/json')
@@ -48,22 +48,19 @@ router.get('/:id', function (req, res) {
  */
 router.post('/', function (req, res) {
 
-    var Property = new propertiesModel();
+    var Province = new provincesModel();
 
-    utils.isNotUndefined(req.body.title) ? Property.title = req.body.title : null;
-    utils.isNotUndefined(req.body.price) ? Property.price = req.body.price : null;
-    utils.isNotUndefined(req.body.description) ? Property.description = req.body.description : null;
-    utils.isNotUndefined(req.body.lat) ? Property.lat = req.body.lat : null;
-    utils.isNotUndefined(req.body.long) ? Property.long = req.body.long : null;
-    utils.isNotUndefined(req.body.beds) ? Property.beds = req.body.beds : null;
-    utils.isNotUndefined(req.body.baths) ? Property.baths = req.body.baths : null;
-    utils.isNotUndefined(req.body.squareMeters) ? Property.squareMeters = req.body.squareMeters : null;
+    utils.isNotUndefined(req.body.name) ? Province.name = req.body.name : null;
+    utils.isNotUndefined(req.body.boundaries.upperLeft.x) ? Province.boundaries.upperLeft.x = req.body.boundaries.upperLeft.x : null;
+    utils.isNotUndefined(req.body.boundaries.upperLeft.y) ? Province.boundaries.upperLeft.y = req.body.boundaries.upperLeft.y : null;
+    utils.isNotUndefined(req.body.boundaries.bottomRight.x) ? Province.boundaries.bottomRight.x = req.body.boundaries.bottomRight.x : null;
+    utils.isNotUndefined(req.body.boundaries.bottomRight.y) ? Province.boundaries.bottomRight.y = req.body.boundaries.bottomRight.y : null;
 
-    Property.save()
-        .then(function (savedPerson) {
+    Province.save()
+        .then(function (province) {
             return res.status(200)
                 .set('Content-Type', 'application/json')
-                .json(savedPerson);
+                .json(province);
 
         })
         .catch(function (err) {

@@ -10,7 +10,7 @@ const   express         = require('express'),
 global.__base = __dirname + '/';
 
 // Mongoose Conn
-const mongo_url   = 'mongodb://localhost/VRBackEndChallenge';
+const mongo_url   = 'mongodb://127.0.0.1:27017/VRBackEndChallenge';
 const db          = mongoose.connection;
 db.on('error', console.error);
 mongoose.connect(mongo_url);
@@ -24,13 +24,15 @@ app.use(cors());
 
 // URL base, only for conn test
 router.get('/', function (req, res) {
-    res.status(200).json({message: '!!'});
+    res.status(200).json({message: 'OK'});
 });
 
 // Routes
 const propertiesRoute = require('./api/properties/route');
+const provincesRoute = require('./api/provinces/route');
 
 router.use('/properties', propertiesRoute);
+router.use('/provinces', provincesRoute);
 
 // URL API Prefix
 app.use('/vr-backend-challenge/v1', router);
