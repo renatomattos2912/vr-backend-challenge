@@ -8,9 +8,9 @@ var utils = require(__base + 'lib/utils');
 const provincesModel = require('./model');
 
 /**
- * @api {get} /user/:id Request User information
- * @apiName GetUser
- * @apiGroup User
+ * @api {get} /provinces/:id Retorna todas as provinces
+ * @apiName GetProvinces
+ * @apiGroup Provinces
  *
  * @apiParam {Number} id Users unique ID.
  *
